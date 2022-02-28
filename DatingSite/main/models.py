@@ -9,12 +9,15 @@ class User(AbstractUser):
     )
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
     first_name = models.CharField(max_length=55)
     last_name = models.CharField(max_length=55)
     gender = models.CharField(max_length=20, choices=GENDER_SELECTION)
     email = models.EmailField(unique=True)
 
     avatar = models.ImageField(upload_to='media/', blank=True)
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
     username = None
 
     def __str__(self):
