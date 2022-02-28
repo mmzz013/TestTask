@@ -9,6 +9,7 @@ class User(AbstractUser):
     )
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    username = None
 
     first_name = models.CharField(max_length=55)
     last_name = models.CharField(max_length=55)
@@ -18,7 +19,8 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to='media/', blank=True)
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
-    username = None
+
+    liked_users = models.ManyToManyField(to="User")
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} {self.email}'
